@@ -26,11 +26,22 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release --no-restore
       working-directory: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: SqlServerBulkCopyTool
+        path: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/SqlServerBulkCopyTool.exe
+     
+     
   deploy:
     needs: [build]
     
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: SqlServerBulkCopyTool
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -49,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/SqlServerBulkCopyTool.exe
+          asset_path: SqlServerBulkCopyTool.exe
           asset_name: SqlServerBulkCopyTool.exe
           asset_content_type: application/octet-stream
     
