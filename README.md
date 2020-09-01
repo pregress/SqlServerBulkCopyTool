@@ -1,5 +1,7 @@
 # SqlServerBulkCopyTool
 
+![Release](https://github.com/pregress/SqlServerBulkCopyTool/workflows/Release/badge.svg)
+
 :bullettrain_side: Command line tool, to bulk copy data between a source an destination SQL server. 
 
 When you need to move data between 2 SQL server instances you can do this with [SqlBulkCopy](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlbulkcopy). These tool elimnates the coding and allows for passing in the arguments to copy the data between the 2 servers.
