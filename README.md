@@ -1,5 +1,5 @@
 # SqlServerBulkCopyTool
-
+![](./logo.png =250x)
 ![Release](https://github.com/pregress/SqlServerBulkCopyTool/workflows/Release/badge.svg)
 
 :bullettrain_side: Command line tool, to bulk copy data between a source an destination SQL server. 
