@@ -26,10 +26,13 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release --no-restore
       working-directory: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool
-    - name: Zip artificat
-      uses: montudor/action-zip@v0.1.0
+    - name: Zip
+      uses: TheDoctor0/zip-release@0.4.1
       with:
-        args: zip -qq -r ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/SqlServerBulkCopyTool.zip ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/
+        filename: 'SqlServerBulkCopyTool.zip'
+        path: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/
+        directory: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/
+        exclusions: '*.pdb*'
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
