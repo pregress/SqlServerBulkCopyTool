@@ -2,9 +2,9 @@ name: Release
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build:
@@ -21,16 +21,20 @@ jobs:
       run: dotnet restore
       working-directory: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore /p:AssemblyVersion=1.0.0 /p:AssemblyFileVersion=1.0.0
       working-directory: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool
     - name: Publish
       run: dotnet publish --configuration Release --no-restore
       working-directory: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool
+    - name: Zip artificat
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -qq -r ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/SqlServerBulkCopyTool.zip ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: SqlServerBulkCopyTool
-        path: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/SqlServerBulkCopyTool.exe
+        path: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool/bin/Release/netcoreapp3.1/win-x64/publish/SqlServerBulkCopyTool.zip
      
      
   deploy:
