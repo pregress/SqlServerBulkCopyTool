@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SqlServerBulkCopyTool": {
+      "commandName": "Project",
+      "commandLineArgs": "--source-connectionstring \"Server=LocalHost;Database=TestDb;Integrated Security=SSPI;\" --source-query \"SELECT * FROM MySourceTable\" --destination-connectionstring \"Server=LocalHost;Database=TestDb;Integrated Security=SSPI;\" --destination-tablename \"MyDestinationTable\""
+    }
+  }
+}
