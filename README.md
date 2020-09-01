@@ -9,6 +9,8 @@ When you need to move data between 2 SQL server instances you can do this with [
 ![CI](https://github.com/pregress/SqlServerBulkCopyTool/workflows/CI/badge.svg)
 ![Release](https://github.com/pregress/SqlServerBulkCopyTool/workflows/Release/badge.svg)
 
+You can download the single exe from the [release page](https://github.com/pregress/SqlServerBulkCopyTool/releases)
+
 ## Required arguments
 The following arguments are required.
 
