@@ -47,7 +47,7 @@ SqlServerBulkCopyTool.exe --source-connectionstring "Server=localhost;Database=T
 
 ### Bulk copy from localhost to a remote sql server with bulk copy options: TableLock and CheckConstrains
 
-Executes the bulk copy with TableLock and check constraints.
+Executes the bulk copy with table lock and check constraints.
 
 ```
 SqlServerBulkCopyTool.exe --source-connectionstring "Server=localhost;Database=TestDb;Integrated Security=SSPI;" --source-query "SELECT * FROM MySourceTable" --destination-connectionstring "Server=tcp:remote.sample-server.com,1433;Database=TestDb;Integrated Security=SSPI;" --destination-tablename "MyDestinationTable" --bulk-copy-options TableLock,CheckConstraints
