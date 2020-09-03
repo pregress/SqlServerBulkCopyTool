@@ -13,6 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -23,3 +26,15 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
       working-directory: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v1.4
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        # Additional arguments to the sonarcloud scanner
+        args: >
+          -Dsonar.organization=pregress
+          -Dsonar.projectKey=pregress_SqlServerBulkCopyTool
+        # Set the sonar.projectBaseDir analysis property
+        projectBaseDir: ./src/SqlServerBulkCopyTool/SqlServerBulkCopyTool
