@@ -11,36 +11,16 @@ When you need to move data between 2 SQL server instances you can do this with [
 
 You can download the single exe from the [release page](https://github.com/pregress/SqlServerBulkCopyTool/releases)
 
-## Required arguments
-The following arguments are required.
+# Arguments
+| Argument      | Description   | Required  | Default |
+| ------------- | ------------- |------------- |------------- |
+| source-connectionstring | The connection string of the source database. | yes | |
+| source-query | The tSQL query to retrieve data from the source database. | yes |  |
+| destination-connectionstring | The connection string of the destination database. | yes |  |
+| destination-tablename | The name of the table in the destination database where the data is inserted. | yes |  |
+| bulk-insert-timeout | A timeout in seconds to execute the bulk insert. | no | 60 |
+| bulk-copy-options | The [SqlBulkCopyOptions](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlbulkcopyoptions#fields) as provided by Microsoft. | no | Default |
 
-### source-connectionstring
-The source connection string. Examples can be found [here](https://www.connectionstrings.com/sql-server/)
-
-### source-query
-A TSQL query to retrieve the data from the source database. 
-Example
-```
-SELECT *
-FROM MyTable
-WHERE MyColumn = 'MyFilter'
-```
-
-### destination-connectionstring
-The destination connection string. Examples can be found [here](https://www.connectionstrings.com/sql-server/)
-
-### destination-tablename
-The name of the table in the destination database. 
-
-## Optional arguments
-The following arguments are optional.
-
-### bulk-insert-timeout
-A timeout in seconds to execute the bulk insert. 
-Default value = 60 seconds.
-
-### bulk-copy-options
-The [SqlBulkCopyOptions](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlbulkcopyoptions#fields) as provided by Microsoft.
 
 ## Examples
 
